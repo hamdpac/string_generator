@@ -74,8 +74,25 @@ let count: usize = std::env::args()
     .expect("Missing argument")
     .parse()
     .expect("Invalid number");
+if len == 0 {
+let target: String = std::env::args()
+    .nth(3)
+    .expect("Missing argument");
+let stringlen = target.len();
+let mut count: usize = 0;
+let result = loop {
+count += 1;
+let string = generate(stringlen);
+if string.len() == stringlen && string == target {
+break string;
+}
+};
+println!("the string {} was generated in {} attempts", result, count);
+}
+else {
 	for i in 1..=count {
 let string = generate(len);
 println!("string number {} is: {}", i, string);
 }
 	}
+}
